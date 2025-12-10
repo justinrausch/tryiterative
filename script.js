@@ -227,13 +227,18 @@ window.addEventListener('load', function() {
                                                     const iconStyle = window.getComputedStyle(appIcon);
                                                     
                                                     // Show detail view (don't hide apps container)
-                                                    appDetailView.classList.add('show');
-                                                    
-                                                    // Force display
                                                     appDetailView.style.display = 'flex';
                                                     appDetailView.style.flexDirection = 'column';
                                                     appDetailView.style.alignItems = 'center';
                                                     appDetailView.style.justifyContent = 'center';
+                                                    
+                                                    // Trigger fade in
+                                                    requestAnimationFrame(() => {
+                                                        appDetailView.classList.add('show');
+                                                        requestAnimationFrame(() => {
+                                                            appDetailView.classList.add('showing');
+                                                        });
+                                                    });
                                                     
                                                     // Update detail view
                                                     appDetailName.textContent = appName;
@@ -272,8 +277,12 @@ window.addEventListener('load', function() {
                                                     e.preventDefault();
                                                     const appDetailView = document.querySelector('.app-detail-view');
                                                     if (appDetailView) {
-                                                        appDetailView.classList.remove('show');
-                                                        appDetailView.style.display = 'none';
+                                                        // Trigger fade out
+                                                        appDetailView.classList.remove('showing');
+                                                        setTimeout(() => {
+                                                            appDetailView.classList.remove('show');
+                                                            appDetailView.style.display = 'none';
+                                                        }, 300); // Match transition duration
                                                     }
                                                     // Don't close the apps container, just hide the detail view
                                                     return false;

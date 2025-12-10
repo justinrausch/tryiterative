@@ -379,6 +379,19 @@ body::after {
     background-color: #000000;
     z-index: 2000;
     overflow-y: auto;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.app-detail-view.show {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.app-detail-view.showing {
+    opacity: 1;
 }
 
 .apps-container.show-detail .apps-grid-view {
