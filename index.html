@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10x</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="vanta-background"></div>
+    <div class="grain-overlay"></div>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="#" class="logo">
+                    <img src="https://ik.imagekit.io/atlht1jbt/Group%202.png" alt="10x" class="logo-img">
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="#" class="nav-link">CAREERS</a>
+                <span class="nav-separator">•</span>
+                <a href="#" class="nav-link">ABOUT</a>
+                <span class="nav-separator">•</span>
+                <a href="#" class="nav-link">TEAM</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="hero-section">
+            <div class="hero-content">
+                <img src="https://ik.imagekit.io/atlht1jbt/Group%202.png" alt="10x" class="hero-title">
+                <div class="our-apps-text">
+                    <span class="apps-text-label">OUR APPS</span>
+                    <span class="arrow">→</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="apps-container">
+            <div class="apps-grid-view">
+                <div class="liquid-glass">
+                    <div class="liquid-glass--bend"></div>
+                    <div class="liquid-glass--face"></div>
+                    <div class="liquid-glass--edge"></div>
+                    <div class="apps-grid">
+                        <div class="app-item" data-app="1">
+                            <div class="app-icon"></div>
+                            <div class="app-name">App 1</div>
+                        </div>
+                        <div class="app-item" data-app="2">
+                            <div class="app-icon"></div>
+                            <div class="app-name">App 2</div>
+                        </div>
+                        <div class="app-item" data-app="3">
+                            <div class="app-icon"></div>
+                            <div class="app-name">App 3</div>
+                        </div>
+                        <div class="app-item" data-app="4">
+                            <div class="app-icon"></div>
+                            <div class="app-name">App 4</div>
+                        </div>
+                        <div class="app-item" data-app="5">
+                            <div class="app-icon"></div>
+                            <div class="app-name">App 5</div>
+                        </div>
+                        <div class="app-item-placeholder"></div>
+                        <div class="app-item-placeholder"></div>
+                        <div class="app-item-placeholder"></div>
+                        <div class="app-item-placeholder"></div>
+                    </div>
+                </div>
+                <div class="hide-apps-text">
+                    <span class="apps-text-label">HIDE APPS</span>
+                    <span class="arrow">→</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="app-detail-view">
+            <div class="app-detail-content">
+                <div class="app-detail-icon-wrapper">
+                    <div class="app-detail-icon"></div>
+                </div>
+                    <div class="app-detail-name"></div>
+                    <div class="app-detail-stats"></div>
+                    <div class="app-detail-about">
+                        <h2>About</h2>
+                        <p class="app-about-text">This is a description of the app. It provides information about what the app does and its key features.</p>
+                    </div>
+                <div class="back-button">
+                    <span>← Back</span>
+                </div>
+            </div>
+        </div>
+        
+        <svg style="display: none" xmlns="http://www.w3.org/2000/svg">
+            <filter id="glass-blur" x="0" y="0" width="100%" height="100%" filterUnits="objectBoundingBox">
+                <feTurbulence type="fractalNoise" baseFrequency="0.003 0.007" numOctaves="1" result="turbulence" />
+                <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="200" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+        </svg>
+
+        <div class="location-indicator">
+            <span class="location-text">SF, CALIFORNIA</span>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
