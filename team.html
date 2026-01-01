@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team - Iterative</title>
+    <meta name="description" content="Meet the Iterative team">
+    <link rel="stylesheet" href="styles.css?v=4">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="team-page">
+    <div id="vanta-background"></div>
+    <div class="grain-overlay"></div>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="logo">
+                    <img src="https://ik.imagekit.io/atlht1jbt/Group%202.png" alt="Iterative" class="logo-img">
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="careers.html" class="nav-link">CAREERS</a>
+                <span class="nav-separator">•</span>
+                <a href="about.html" class="nav-link">ABOUT</a>
+                <span class="nav-separator">•</span>
+                <a href="team.html" class="nav-link active">TEAM</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="team-page-container">
+            <div class="team-header">
+                <a href="index.html" class="team-back-arrow">←</a>
+                <h1 class="team-title">TEAM</h1>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-member-image pixelated">
+                        <img src="https://ik.imagekit.io/atlht1jbt/1666829012203.jpeg" alt="Jayden Francis" class="team-member-img">
+                    </div>
+                    <div class="team-member-name">JAYDEN FRANCIS</div>
+                    <div class="team-member-role">// TECHNICAL</div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-member-image pixelated">
+                        <img src="https://ik.imagekit.io/atlht1jbt/1754443126728.jpeg" alt="Kylan O'Connor" class="team-member-img">
+                    </div>
+                    <div class="team-member-name">KYLAN O'CONNOR</div>
+                    <div class="team-member-role">// TECHNICAL</div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-member-image pixelated">
+                        <img src="https://ik.imagekit.io/atlht1jbt/Ns8E5GYn_400x400.jpg" alt="Justin Rausch" class="team-member-img">
+                    </div>
+                    <div class="team-member-name">JUSTIN RAUSCH</div>
+                    <div class="team-member-role">// MARKETING</div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="team-member-image pixelated">
+                        <img src="https://ik.imagekit.io/atlht1jbt/Took%20the%20heli%20to%20a%20glacier%20_.jpg" alt="Parker May" class="team-member-img">
+                    </div>
+                    <div class="team-member-name">PARKER MAY</div>
+                    <div class="team-member-role">// TECHNICAL</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
+    <script>
+        window.addEventListener('load', function() {
+            let vantaEffect = null;
+            
+            function initVanta() {
+                if (typeof VANTA !== 'undefined' && VANTA.WAVES) {
+                    vantaEffect = VANTA.WAVES({
+                        el: "#vanta-background",
+                        mouseControls: true,
+                        touchControls: true,
+                        gyroControls: false,
+                        minHeight: 200.00,
+                        minWidth: 200.00,
+                        scale: 0.5,
+                        scaleMobile: 0.5,
+                        color: 0x0a0a0a,
+                        shininess: 20.00,
+                        waveHeight: 10.00,
+                        waveSpeed: 1.50,
+                        zoom: 0.15
+                    });
+                    
+                    setTimeout(() => {
+                        const startTime = Date.now();
+                        const duration = 2000;
+                        const initialZoom = 0.15;
+                        const targetZoom = 0.4;
+                        
+                        function animateZoom() {
+                            const elapsed = Date.now() - startTime;
+                            const progress = Math.min(elapsed / duration, 1);
+                            const easeOut = 1 - Math.pow(1 - progress, 3);
+                            
+                            const currentZoom = initialZoom + (targetZoom - initialZoom) * easeOut;
+                            if (vantaEffect) {
+                                if (vantaEffect.setOptions) {
+                                    vantaEffect.setOptions({ zoom: currentZoom });
+                                } else if (vantaEffect.options) {
+                                    vantaEffect.options.zoom = currentZoom;
+                                    if (vantaEffect.renderer && vantaEffect.renderer.setZoom) {
+                                        vantaEffect.renderer.setZoom(currentZoom);
+                                    }
+                                }
+                            }
+                            
+                            if (progress < 1) {
+                                requestAnimationFrame(animateZoom);
+                            } else {
+                                if (vantaEffect && vantaEffect.options) {
+                                    vantaEffect.options.zoom = targetZoom;
+                                }
+                            }
+                        }
+                        
+                        requestAnimationFrame(animateZoom);
+                    }, 500);
+                } else {
+                    setTimeout(initVanta, 100);
+                }
+            }
+            
+            initVanta();
+        });
+    </script>
+</body>
+</html>

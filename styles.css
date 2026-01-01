@@ -115,6 +115,10 @@ body::after {
     opacity: 0.6;
 }
 
+.nav-link.active {
+    opacity: 0.7;
+}
+
 .nav-separator {
     color: var(--text-secondary);
     font-size: 0.875rem;
@@ -485,6 +489,77 @@ body::after {
     color: #ffffff;
 }
 
+/* Page content styles */
+.page-content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.page-header {
+    margin-bottom: 3rem;
+}
+
+.page-header h1 {
+    font-size: 1.5rem;
+    color: #ffffff;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.page-body {
+    max-width: 600px;
+    color: #888888;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    text-align: center;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.team-page-container .page-body {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.page-body p {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.page-body p:last-child {
+    margin-bottom: 0;
+}
+
+.page-back-button {
+    margin-top: 2rem;
+    font-size: 0.875rem;
+    color: #888888;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    user-select: none;
+    text-align: center;
+}
+
+.page-back-button a {
+    color: #888888;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: inline-block;
+}
+
+.page-back-button:hover,
+.page-back-button:hover a {
+    color: #ffffff;
+}
+
 .app-icon {
     width: 80px;
     height: 80px;
@@ -495,26 +570,58 @@ body::after {
     animation: appIconFadeIn 0.6s ease-out backwards;
 }
 
-.app-icon:nth-child(1),
-.app-icon:nth-child(6) {
+.app-icon.app-icon-ridepal {
+    background-image: url('https://ik.imagekit.io/atlht1jbt/400x400ia-75%20(3).webp') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-color: transparent !important;
+}
+
+.app-icon.app-icon-autolab {
+    background-image: url('https://ik.imagekit.io/atlht1jbt/400x400ia-75%20(4).webp') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-color: transparent !important;
+}
+
+.app-icon.app-icon-ignite {
+    background-image: url('https://ik.imagekit.io/atlht1jbt/400x400ia-75%20(2).webp') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-color: transparent !important;
+}
+
+.app-icon.app-icon-prepzi {
+    background-image: url('https://ik.imagekit.io/atlht1jbt/prepzi-ai.webp') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-color: transparent !important;
+}
+
+.app-icon:nth-child(1):not(.app-icon-ridepal),
+.app-icon:nth-child(6):not(.app-icon-ridepal) {
     animation-delay: 0.1s;
     background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
 }
 
-.app-icon:nth-child(2),
-.app-icon:nth-child(7) {
+.app-icon:nth-child(2):not(.app-icon-autolab),
+.app-icon:nth-child(7):not(.app-icon-autolab) {
     animation-delay: 0.2s;
     background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
 }
 
-.app-icon:nth-child(3),
-.app-icon:nth-child(8) {
+.app-icon:nth-child(3):not(.app-icon-ignite),
+.app-icon:nth-child(8):not(.app-icon-ignite) {
     animation-delay: 0.3s;
     background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
 }
 
-.app-icon:nth-child(4),
-.app-icon:nth-child(9) {
+.app-icon:nth-child(4):not(.app-icon-prepzi),
+.app-icon:nth-child(9):not(.app-icon-prepzi) {
     animation-delay: 0.4s;
     background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
 }
@@ -716,6 +823,22 @@ body::after {
         font-size: 0.75rem;
         padding: 0.5rem 1rem;
     }
+    
+    .page-content {
+        padding: 3rem 1.5rem;
+    }
+    
+    .page-header h1 {
+        font-size: 1.35rem;
+    }
+    
+    .page-body {
+        font-size: 0.875rem;
+    }
+    
+    .page-back-button {
+        font-size: 0.875rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -725,6 +848,217 @@ body::after {
 
     .nav-link {
         font-size: 0.7rem;
+    }
+    
+    .page-content {
+        padding: 2rem 1.5rem;
+    }
+    
+    .page-header h1 {
+        font-size: 1.25rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .page-body {
+        font-size: 0.8125rem;
+        max-width: 100%;
+    }
+    
+    .page-back-button {
+        margin-top: 2rem;
+        font-size: 0.8125rem;
+    }
+}
+
+/* Team page and other pages styles */
+body.team-page .main-content,
+.main-content:has(.team-page-container) {
+    padding: 0;
+}
+
+.team-page-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 8rem 2rem 4rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.team-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 4rem;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    padding: 0;
+    margin-top: 0;
+}
+
+.team-back-arrow {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: 400;
+    transition: opacity 0.3s ease;
+    position: absolute;
+    left: 0;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+}
+
+.team-back-arrow:hover {
+    opacity: 0.6;
+}
+
+.team-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #ffffff;
+    text-align: center;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem 3rem;
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+    z-index: 2;
+}
+
+.team-member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.team-member-image {
+    width: 100%;
+    aspect-ratio: 1;
+    max-width: 200px;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+    background-color: #1a1a1a;
+}
+
+.team-member-image.pixelated {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+.team-member-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: grayscale(100%);
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    display: block;
+}
+
+.team-member-name {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.team-member-role {
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: #888888;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+@media (max-width: 768px) {
+    .team-page-container {
+        padding: 5rem 1.5rem 3rem;
+    }
+    
+    .team-header {
+        margin-bottom: 3rem;
+        margin-top: 1.5rem;
+    }
+    
+    .team-title {
+        font-size: 1.25rem;
+    }
+    
+    .team-grid {
+        gap: 2rem 2rem;
+        max-width: 450px;
+    }
+    
+    .team-member-image {
+        max-width: 180px;
+        margin-bottom: 1rem;
+    }
+    
+    .team-member-name {
+        font-size: 0.8125rem;
+    }
+    
+    .team-member-role {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .team-page-container {
+        padding: 5rem 1rem 2rem;
+    }
+    
+    .team-header {
+        margin-bottom: 2.5rem;
+        margin-top: 1rem;
+    }
+    
+    .team-back-arrow {
+        font-size: 1.125rem;
+    }
+    
+    .team-title {
+        font-size: 1.125rem;
+    }
+    
+    .team-grid {
+        gap: 1.5rem 1.5rem;
+        max-width: 350px;
+    }
+    
+    .team-member-image {
+        max-width: 150px;
+        margin-bottom: 0.875rem;
+    }
+    
+    .team-member-name {
+        font-size: 0.75rem;
+    }
+    
+    .team-member-role {
+        font-size: 0.6875rem;
     }
 }
 

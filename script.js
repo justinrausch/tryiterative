@@ -1,3 +1,14 @@
+// App data structure
+const appData = {
+    '1': {
+        name: 'RidePal',
+        image: 'https://ik.imagekit.io/atlht1jbt/400x400ia-75%20(3).webp',
+        downloads: '100K+',
+        reviews: '6K+',
+        description: 'Discover the best MTB trails, track your rides, compete with friends, and share your mountain biking adventures.'
+    }
+};
+
 // Initialize Vanta.js waves effect
 window.addEventListener('load', function() {
     let vantaEffect = null;
@@ -240,30 +251,82 @@ window.addEventListener('load', function() {
                                                         });
                                                     });
                                                     
-                                                    // Update detail view
-                                                    appDetailName.textContent = appName;
+                                                    // Get app data if available, otherwise use defaults
+                                                    const appDetailAbout = document.querySelector('.app-about-text');
                                                     
-                                                    // Update stats (you can customize these values per app)
-                                                    if (appDetailStats) {
-                                                        // Example: generate random values for demo
-                                                        const downloads = Math.floor(Math.random() * 900000) + 100000;
-                                                        const reviews = Math.floor(Math.random() * 5000) + 1000;
-                                                        
-                                                        // Format downloads with K+ notation
-                                                        const downloadsFormatted = downloads >= 1000 
-                                                            ? `${Math.floor(downloads / 1000)}K+` 
-                                                            : `${downloads}+`;
-                                                        
-                                                        // Format reviews with K+ notation
-                                                        const reviewsFormatted = reviews >= 1000 
-                                                            ? `${Math.floor(reviews / 1000)}K+` 
-                                                            : `${reviews}+`;
-                                                        
-                                                        appDetailStats.textContent = `${downloadsFormatted} DOWNLOADS • ${reviewsFormatted} 5 STAR REVIEWS`;
+                                                    // Handle app-specific data
+                                                    if (appNumber === '1') {
+                                                        // RidePal
+                                                        appDetailName.textContent = 'RidePal';
+                                                        if (appDetailStats) {
+                                                            appDetailStats.textContent = '100K+ DOWNLOADS • 6K+ 5 STAR REVIEWS';
+                                                        }
+                                                        if (appDetailAbout) {
+                                                            appDetailAbout.textContent = 'Discover the best MTB trails, track your rides, compete with friends, and share your mountain biking adventures.';
+                                                        }
+                                                        if (appDetailIcon) {
+                                                            appDetailIcon.style.background = `url('https://ik.imagekit.io/atlht1jbt/400x400ia-75%20(3).webp') center/cover no-repeat`;
+                                                        }
+                                                    } else if (appNumber === '2') {
+                                                        // AutoLab
+                                                        appDetailName.textContent = 'AutoLab';
+                                                        if (appDetailStats) {
+                                                            appDetailStats.textContent = '90K+ DOWNLOADS • 3K+ 4.9 STAR REVIEWS';
+                                                        }
+                                                        if (appDetailAbout) {
+                                                            appDetailAbout.textContent = 'Customize your real car with AI. Add new wheels, body kits, wraps, and more all with the tap of a button.';
+                                                        }
+                                                        if (appDetailIcon) {
+                                                            appDetailIcon.style.background = `url('https://ik.imagekit.io/atlht1jbt/400x400ia-75%20(4).webp') center/cover no-repeat`;
+                                                        }
+                                                    } else if (appNumber === '3') {
+                                                        // Ignite
+                                                        appDetailName.textContent = 'Ignite';
+                                                        if (appDetailStats) {
+                                                            appDetailStats.textContent = 'JUST LAUNCHED';
+                                                        }
+                                                        if (appDetailAbout) {
+                                                            appDetailAbout.textContent = 'Rewire your discipline in 70 days, with personalized daily tasks, AI task verification, screen time blocking, and more. Reset your life.';
+                                                        }
+                                                        if (appDetailIcon) {
+                                                            appDetailIcon.style.background = `url('https://ik.imagekit.io/atlht1jbt/400x400ia-75%20(2).webp') center/cover no-repeat`;
+                                                        }
+                                                    } else if (appNumber === '4') {
+                                                        // Prepzi AI
+                                                        appDetailName.textContent = 'Prepzi AI';
+                                                        if (appDetailStats) {
+                                                            appDetailStats.textContent = '1,000+ USERS';
+                                                        }
+                                                        if (appDetailAbout) {
+                                                            appDetailAbout.textContent = 'Ace your interviews with AI-powered practice. Practice with realistic AI interviewers and get personalized feedback to land your dream job.';
+                                                        }
+                                                        if (appDetailIcon) {
+                                                            appDetailIcon.style.background = `url('https://ik.imagekit.io/atlht1jbt/prepzi-ai.webp') center/cover no-repeat`;
+                                                        }
+                                                    } else {
+                                                        // Other apps - use defaults
+                                                        appDetailName.textContent = appName;
+                                                        if (appDetailStats) {
+                                                            // Fallback to random values for apps without data
+                                                            const downloads = Math.floor(Math.random() * 900000) + 100000;
+                                                            const reviews = Math.floor(Math.random() * 5000) + 1000;
+                                                            
+                                                            // Format downloads with K+ notation
+                                                            const downloadsFormatted = downloads >= 1000 
+                                                                ? `${Math.floor(downloads / 1000)}K+` 
+                                                                : `${downloads}+`;
+                                                            
+                                                            // Format reviews with K+ notation
+                                                            const reviewsFormatted = reviews >= 1000 
+                                                                ? `${Math.floor(reviews / 1000)}K+` 
+                                                                : `${reviews}+`;
+                                                            
+                                                            appDetailStats.textContent = `${downloadsFormatted} DOWNLOADS • ${reviewsFormatted} 5 STAR REVIEWS`;
+                                                        }
+                                                        // Copy icon style to detail icon
+                                                        appDetailIcon.style.background = iconStyle.background;
+                                                        appDetailIcon.style.backgroundImage = '';
                                                     }
-                                                    
-                                                    // Copy icon style to detail icon
-                                                    appDetailIcon.style.background = iconStyle.background;
                                                     
                                                     // Store which app was clicked
                                                     appDetailView.setAttribute('data-current-app', appNumber);
