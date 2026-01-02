@@ -129,12 +129,60 @@ window.addEventListener('load', function() {
                                     heroLogo.style.width = 'clamp(12rem, 24vw, 20rem)';
                                     heroLogo.style.transition = 'none';
                                     
-                                    // Fade in "OUR APPS" text after glitch
+                                    // Fade in tagline after glitch
+                                    const heroTagline = document.querySelector('.hero-tagline');
+                                    const statsReveal = document.querySelector('.stats-reveal');
                                     const ourAppsText = document.querySelector('.our-apps-text');
+                                    
+                                    if (heroTagline) {
+                                        setTimeout(() => {
+                                            heroTagline.classList.add('visible');
+                                        }, 200);
+                                    }
+                                    
+                                    if (statsReveal) {
+                                        setTimeout(() => {
+                                            statsReveal.classList.add('visible');
+                                            
+                                            // Animate the counting numbers
+                                            const statNumbers = statsReveal.querySelectorAll('.stat-number');
+                                            statNumbers.forEach(numEl => {
+                                                const target = parseInt(numEl.getAttribute('data-target'));
+                                                const duration = 2000; // 2 seconds
+                                                const startTime = Date.now();
+                                                
+                                                function animateCount() {
+                                                    const elapsed = Date.now() - startTime;
+                                                    const progress = Math.min(elapsed / duration, 1);
+                                                    
+                                                    // Ease out cubic for smooth deceleration
+                                                    const easeOut = 1 - Math.pow(1 - progress, 3);
+                                                    const current = Math.floor(target * easeOut);
+                                                    
+                                                    numEl.textContent = current;
+                                                    
+                                                    if (progress < 1) {
+                                                        requestAnimationFrame(animateCount);
+                                                    } else {
+                                                        numEl.textContent = target;
+                                                    }
+                                                }
+                                                
+                                                animateCount();
+                                            });
+                                        }, 300); // Delay after glitch for stats
+                                    }
+                                    
+                                    // Fade in "OUR APPS" text after stats reveal
                                     if (ourAppsText) {
                                         setTimeout(() => {
                                             ourAppsText.classList.add('visible');
-                                            
+                                        }, 1800); // Appear after stats counting animation
+                                    }
+                                    
+                                    if (ourAppsText) {
+                                        // Wait until OUR APPS is visible before adding click handlers
+                                        setTimeout(() => {
                                             // Function to hide apps and return to original state
                                             function hideApps() {
                                                 const heroSection = document.querySelector('.hero-section');
@@ -253,6 +301,13 @@ window.addEventListener('load', function() {
                                                     
                                                     // Get app data if available, otherwise use defaults
                                                     const appDetailAbout = document.querySelector('.app-about-text');
+                                                    const appPrivacyLink = document.querySelector('.app-privacy-link');
+                                                    
+                                                    // Reset privacy link
+                                                    if (appPrivacyLink) {
+                                                        appPrivacyLink.style.display = 'none';
+                                                        appPrivacyLink.href = '#';
+                                                    }
                                                     
                                                     // Handle app-specific data
                                                     if (appNumber === '1') {
@@ -266,6 +321,10 @@ window.addEventListener('load', function() {
                                                         }
                                                         if (appDetailIcon) {
                                                             appDetailIcon.style.background = `url('https://ik.imagekit.io/atlht1jbt/400x400ia-75%20(3).webp') center/cover no-repeat`;
+                                                        }
+                                                        if (appPrivacyLink) {
+                                                            appPrivacyLink.href = 'ride-pal-privacy-policy/';
+                                                            appPrivacyLink.style.display = 'inline-block';
                                                         }
                                                     } else if (appNumber === '2') {
                                                         // AutoLab
@@ -290,6 +349,10 @@ window.addEventListener('load', function() {
                                                         }
                                                         if (appDetailIcon) {
                                                             appDetailIcon.style.background = `url('https://ik.imagekit.io/atlht1jbt/400x400ia-75%20(2).webp') center/cover no-repeat`;
+                                                        }
+                                                        if (appPrivacyLink) {
+                                                            appPrivacyLink.href = 'ignite-privacy-policy/';
+                                                            appPrivacyLink.style.display = 'inline-block';
                                                         }
                                                     } else if (appNumber === '4') {
                                                         // Prepzi AI

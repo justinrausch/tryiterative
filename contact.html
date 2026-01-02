@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Careers - Iterative</title>
-    <meta name="description" content="Join the Iterative team">
-    <link rel="stylesheet" href="styles.css?v=5">
+    <title>Contact - Iterative</title>
+    <meta name="description" content="Contact Iterative - Tell us about yourself and your project ideas">
+    <link rel="stylesheet" href="styles.css?v=6">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -21,26 +21,52 @@
                 </a>
             </div>
             <div class="nav-right">
-                <a href="careers.html" class="nav-link active">CAREERS</a>
-                <span class="nav-separator">•</span>
                 <a href="about.html" class="nav-link">ABOUT</a>
                 <span class="nav-separator">•</span>
                 <a href="team.html" class="nav-link">TEAM</a>
+                <span class="nav-separator">•</span>
+                <a href="contact.html" class="nav-link active">CONTACT</a>
             </div>
         </div>
     </nav>
 
     <main class="main-content">
-        <div class="team-page-container">
-            <div class="team-header">
+        <div class="contact-page-container">
+            <div class="contact-header">
                 <a href="index.html" class="team-back-arrow">←</a>
-                <h1 class="team-title">CAREERS</h1>
+                <h1 class="contact-title">CONTACT US</h1>
             </div>
             
-            <div class="page-body">
-                <p>Join our team and help build the future of innovative apps.</p>
-                <p>We're always looking for talented individuals to join the Iterative team.</p>
+            <div class="contact-intro">
+                <p class="contact-headline">Want to work with us?</p>
+                <p class="contact-subtext">Tell us about yourself and your project ideas.</p>
             </div>
+            
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" id="name" name="name" class="form-input" placeholder="Your name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="Your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="social" class="form-label">Social Media Link</label>
+                    <input type="text" id="social" name="social" class="form-input" placeholder="Instagram, Twitter, etc.">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message" class="form-label">What else should we know about you?</label>
+                    <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about yourself, your ideas, or anything else..." rows="4"></textarea>
+                </div>
+                
+                <button type="submit" class="form-submit" id="submitBtn">
+                    <span class="submit-text">Send Message</span>
+                </button>
+            </form>
         </div>
     </main>
 
@@ -68,7 +94,7 @@
                         zoom: 0.15
                     });
                     
-                    // Animate zoom on page load - zoom out effect
+                    // Animate zoom on page load
                     setTimeout(() => {
                         const startTime = Date.now();
                         const duration = 2000;
@@ -86,18 +112,11 @@
                                     vantaEffect.setOptions({ zoom: currentZoom });
                                 } else if (vantaEffect.options) {
                                     vantaEffect.options.zoom = currentZoom;
-                                    if (vantaEffect.renderer && vantaEffect.renderer.setZoom) {
-                                        vantaEffect.renderer.setZoom(currentZoom);
-                                    }
                                 }
                             }
                             
                             if (progress < 1) {
                                 requestAnimationFrame(animateZoom);
-                            } else {
-                                if (vantaEffect && vantaEffect.options) {
-                                    vantaEffect.options.zoom = targetZoom;
-                                }
                             }
                         }
                         
@@ -109,6 +128,38 @@
             }
             
             initVanta();
+            
+            // Form handling - mailto
+            const form = document.getElementById('contactForm');
+            const CONTACT_EMAIL = 'hello@talkupapp.com';
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const social = document.getElementById('social').value.trim();
+                const message = document.getElementById('message').value.trim();
+                
+                const subject = encodeURIComponent(`[Iterative Contact] New submission from ${name}`);
+                const body = encodeURIComponent(
+`NEW CONTACT FORM SUBMISSION
+============================
+
+FROM: ${name}
+REPLY-TO EMAIL: ${email}
+SOCIAL MEDIA: ${social || 'Not provided'}
+
+MESSAGE:
+${message || 'No additional message provided'}
+
+============================
+Submitted via Iterative website contact form
+Reply directly to: ${email}`
+                );
+                
+                window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}&reply-to=${encodeURIComponent(email)}`;
+            });
         });
     </script>
 </body>
